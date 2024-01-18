@@ -1,4 +1,5 @@
-package com.opensource.opensource;
+package com.opensource.main;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

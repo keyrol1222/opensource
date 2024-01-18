@@ -1,13 +1,17 @@
 package com.opensource.opensource;
 
-import org.junit.jupiter.api.Test;
+import com.opensource.Database.Idiomas;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class VideoClubApplicationTests {
 
-	@Test
-	void contextLoads() {
+	public static void main(String[] args) {
+            
+            Idiomas i = new Idiomas();
+            
+            i.getId();
+		
 	}
 
 }
