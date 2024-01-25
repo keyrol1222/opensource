@@ -1,6 +1,7 @@
 package com.opensource.Database;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import javax.persistence.*;
 
 @Entity
@@ -12,9 +13,11 @@ public class Articulo implements Serializable {
     
     private String Titulo;
     
-    private String TipoArticulo;
+    @OneToMany
+    private LinkedList<TiposArticulos> Tipos;
     
-    private String Idioma;
+    @OneToMany
+    private LinkedList<Idiomas> idiomas;
     
     private int RentaXDias;
     

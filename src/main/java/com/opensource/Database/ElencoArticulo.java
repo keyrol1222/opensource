@@ -5,11 +5,11 @@ import javax.persistence.*;
 
 public class ElencoArticulo {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Articulo;
+    @OneToOne
+    private Articulo articulo;
     
-    private String Elenco;
+    @OneToOne
+    private Elenco elenco;
     
     private String Rol;
     

@@ -11,11 +11,14 @@ public class RentaDevolucion implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int NoRenta;
     
-    private String Empleado;
+    @OneToOne
+    private Empleados empleado;
     
-    private int Articulo;
+    @OneToOne
+    private Articulo articulo;
     
-    private String Cliente;
+    @OneToOne
+    private Clientes cliente;
     
     private int CantidadDias;
     
