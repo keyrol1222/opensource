@@ -3,13 +3,15 @@ package com.opensource.Database;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class RentaDevolucion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int NoRenta;
+    private int Id;
     
     @OneToOne
     private Empleados empleado;

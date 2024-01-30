@@ -3,8 +3,10 @@ package com.opensource.Database;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Clientes implements Serializable {
     
     @Id

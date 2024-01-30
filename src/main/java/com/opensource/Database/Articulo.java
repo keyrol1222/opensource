@@ -3,8 +3,10 @@ package com.opensource.Database;
 import java.io.Serializable;
 import java.util.LinkedList;
 import javax.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Articulo implements Serializable {
     
     @Id
