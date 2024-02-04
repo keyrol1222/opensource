@@ -6,12 +6,28 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Elenco extends TiposArticulos implements Serializable {
+public class Elenco implements Serializable {
 
-    public Elenco(int Id, String Descripcion, String Estado) {
-        super(Id, Descripcion, Estado);
-    } 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
+    
+    private String Descripcion;
+    
+    private String Estado;
 
+    //Constructor con todo
+    public Elenco(Long Id, String Descripcion, String Estado) {
+        this.Id = Id;
+        this.Descripcion = Descripcion;
+        this.Estado = Estado;
+    }
+    //Constructor sin id
+    public Elenco(String Descripcion, String Estado) {
+        this.Descripcion = Descripcion;
+        this.Estado = Estado;
+    }
+    
     public Elenco() {
     }
     

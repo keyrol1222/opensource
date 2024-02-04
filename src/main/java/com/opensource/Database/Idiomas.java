@@ -7,13 +7,31 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Idiomas extends TiposArticulos implements Serializable {
+public class Idiomas implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
+    
+    private String Descripcion;
+    
+    private String Estado;
 
-    public Idiomas(int Id, String Descripcion, String Estado) {
-        super(Id, Descripcion, Estado);
+    
+    //Constructor con todo
+    public Idiomas(Long Id, String Descripcion, String Estado) {
+        this.Id = Id;
+        this.Descripcion = Descripcion;
+        this.Estado = Estado;
     }
 
+    //Constructor sin id
+    public Idiomas(String Descripcion, String Estado) {
+        this.Descripcion = Descripcion;
+        this.Estado = Estado;
+    }
+    
+    
     public Idiomas() {
     }
 }

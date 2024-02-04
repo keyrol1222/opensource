@@ -1,16 +1,33 @@
 package com.opensource.opensource;
 
+import Persistence.Controladora;
 import com.opensource.Database.Idiomas;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringBootTest
 class VideoClubApplicationTests {
+    
+        Controladora c;
+    
+        @Autowired
+        public VideoClubApplicationTests(Controladora c){
+    
+            this.c = c;
+        }
 
 	public static void main(String[] args) {
             
+
+            
+            
             Idiomas i = new Idiomas();
             
-            i.getId();
+            i.setEstado("activo");
+            
+            i.setDescripcion("Espanol");
+            
+            c.CrearIdiomas(i);
+            
+            System.out.println(i.getId());
 		
 	}
 

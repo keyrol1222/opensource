@@ -11,7 +11,7 @@ public class RentaDevolucion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private Long Id;
     
     @OneToOne
     private Empleados empleado;
@@ -33,4 +33,35 @@ public class RentaDevolucion implements Serializable {
     private String comentario;
     
     private String Estado;
+
+    public RentaDevolucion() {
+    }
+    
+    //Constructor sin id
+    public RentaDevolucion(Empleados empleado, Articulo articulo, Clientes cliente, int CantidadDias, Date FechaRenta, Date FechaDevolucion, String comentario, String Estado) {
+        this.empleado = empleado;
+        this.articulo = articulo;
+        this.cliente = cliente;
+        this.CantidadDias = CantidadDias;
+        this.FechaRenta = FechaRenta;
+        this.FechaDevolucion = FechaDevolucion;
+        this.comentario = comentario;
+        this.Estado = Estado;
+    }
+    
+    
+    //Constructor con todo
+    public RentaDevolucion(Long Id, Empleados empleado, Articulo articulo, Clientes cliente, int CantidadDias, Date FechaRenta, Date FechaDevolucion, String comentario, String Estado) {
+        this.Id = Id;
+        this.empleado = empleado;
+        this.articulo = articulo;
+        this.cliente = cliente;
+        this.CantidadDias = CantidadDias;
+        this.FechaRenta = FechaRenta;
+        this.FechaDevolucion = FechaDevolucion;
+        this.comentario = comentario;
+        this.Estado = Estado;
+    }
+    
+    
 }

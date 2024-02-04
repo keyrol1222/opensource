@@ -1,317 +1,394 @@
 package Persistence;
 
-import com.opensource.Database.Articulo;
-import com.opensource.Database.Clientes;
-import com.opensource.Database.Elenco;
-import com.opensource.Database.Empleados;
-import com.opensource.Database.Generos;
-import com.opensource.Database.Idiomas;
-import com.opensource.Database.RentaDevolucion;
-import com.opensource.Database.TiposArticulos;
+import com.opensource.Database.*;
 import static java.awt.image.ImageObserver.HEIGHT;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
 import javax.swing.JOptionPane;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//Contrladora de persistencias, donde se coordinan las operaciones CRUD
 @Service
-public class ContPersistence {
+public class PersistenceService {
     
-    ArticuloJpaController AC;
+    private final ArticuloJpaController AC;
     
-    ClientesJpaController CC;
+    private final ClientesJpaController CC;
     
-    ElencoJpaController EC;
+    private final ElencoJpaController EC;
     
-    EmpleadosJpaController EmC;
+    private final EmpleadosJpaController EmC;
     
-    GenerosJpaController GC;
+    private final GenerosJpaController GC;
     
-    IdiomasJpaController IC;
+    private final IdiomasJpaController IC;
     
-    RentaDevolucionJpaController RC;
+    private final RentaDevolucionJpaController RC;
     
-    TiposArticulosJpaController TAC;
-    
-    
+    private final TiposArticulosJpaController TAC;
+
+    @Autowired
+    public PersistenceService(ArticuloJpaController AC, ClientesJpaController CC, ElencoJpaController EC, EmpleadosJpaController EmC, GenerosJpaController GC, IdiomasJpaController IC, RentaDevolucionJpaController RC, TiposArticulosJpaController TAC) {
+        this.AC = AC;
+        this.CC = CC;
+        this.EC = EC;
+        this.EmC = EmC;
+        this.GC = GC;
+        this.IC = IC;
+        this.RC = RC;
+        this.TAC = TAC;
+    }
+
     public void CrearArticulo(Articulo a){
         
-        AC.create(a);
+        AC.save(a);
         
     }
     
     public void EditarArticulo(Articulo a){
         
-        try {
-            AC.edit(a);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
+        Optional<Articulo> oa = AC.findById(a.getId());
         
+        Articulo ab = oa.get();
+        
+        ab.setDiasRenta(a.getDiasRenta()); 
+        ab.setEntregaTardia(a.getEntregaTardia());
+        ab.setEstado(a.getEstado());
+        ab.setIdiomas(a.getIdiomas());
+        ab.setRentaXDias(a.getRentaXDias());
+        ab.setTipos(a.getTipos());
+        ab.setTitulo(a.getTitulo());
+        AC.save(ab);
     }
         
     
-    public void ElimArticulo(Articulo a){
-        
-        AC.create(a);
-        
-    }
-    
-    public ArrayList<Articulo> obtenerArticulo(){
-        List<Articulo> articulo = AC.findArticuloEntities();
-        ArrayList<Articulo> ArticuloList = new ArrayList<>(articulo);
-        return ArticuloList;
-    }
-    
-    public Articulo obtenerArticulo(int id){
-        Articulo articulo = AC.findArticulo(id);
-        return articulo;
-    }
-    
-    
-    public void CrearClientes(Clientes c){
-        
-        CC.create(c);
-        
-    }
-    
-    public void EditarClientes(Clientes c){
+    public void ElimArticulo(Long id){
         
         try {
-            CC.edit(c);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
+            AC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
+    }
+    
+    
+    public List<Articulo> obtenerArticulo(){
+        
+        return AC.findAll();
+    }
+    
+    
+    public Optional<Articulo> obtenerArticulo(Long id){
+        
+        return AC.findById(id);
+    }
+    
+    
+    public void CrearCliente(Clientes c){
+        
+        CC.save(c);
+        
+    }
+    
+    
+    public void EditarCliente(Clientes c){
+        
+        Optional<Clientes> oa = CC.findById(c.getId());
+        
+        Clientes ab = oa.get();
+        
+        ab.setCedula(c.getCedula());
+        ab.setEstado(c.getEstado());
+        ab.setLimiteCredito(c.getLimiteCredito());
+        ab.setNoTargetaCR(c.getNoTargetaCR());
+        ab.setNombre(c.getNombre());
+        ab.setTipoPersona(c.getTipoPersona());
+        
+        CC.save(ab);
         
     }
         
     
-    public void ElimClientes(Clientes c){
+    public void ElimCliente(Long id){
         
-        CC.create(c);
-        
+        try {
+            CC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
     }
     
-    public ArrayList<Clientes> obtenerClientes(){
-        List<Clientes> Clientes = CC.findClientesEntities();
-        ArrayList<Clientes> ClientesList = new ArrayList<>(Clientes);
-        return ClientesList;
+    
+    public List<Clientes> obtenerCliente(){
+        return CC.findAll();
     }
     
-    public Clientes obtenerClientes(int id){
-        Clientes Clientes = CC.findClientes(id);
-        return Clientes;
+    
+    
+    public Optional<Clientes> obtenerCliente(Long id){
+        return CC.findById(id);
     }
+    
     
     public void CrearElenco(Elenco e){
         
-        EC.create(e);
-        
+        EC.save(e);        
     }
+    
     
     public void EditarElenco(Elenco e){
         
+        Optional<Elenco> oa = EC.findById(e.getId());
+        
+        Elenco ab = oa.get();
+        
+        ab.setDescripcion(e.getDescripcion());
+        ab.setEstado(e.getEstado());
+        
+        EC.save(ab);
+        
+    }
+        
+    
+    public void ElimElenco(Long id){
+        
         try {
-            EC.edit(e);
+            EC.deleteById(id);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
+    }
+    
+    
+    public List<Elenco> obtenerElenco(){
+
+        return EC.findAll();
+    }
+    
+    
+    public Optional<Elenco> obtenerElenco(Long id){
+
+        return EC.findById(id);
+    }
+    
+    
+    public void CrearEmpleado(Empleados em){
+        
+        EmC.save(em);        
+    }
+    
+    
+    public void EditarEmpleado(Empleados em){
+        
+        Optional<Empleados> oa = EmC.findById(em.getId());
+        
+        Empleados ab = oa.get();
+        
+        ab.setCedula(em.getCedula());
+        ab.setEstado(em.getEstado());
+        ab.setFechaIngreso(em.getFechaIngreso());
+        ab.setNombre(em.getNombre());
+        ab.setPorcientoComision(em.getPorcientoComision());
+        ab.setTandaLaboral(em.getTandaLaboral());
+        
+        EmC.save(ab);
         
     }
         
     
-    public void ElimElenco(Elenco e){
-        
-        EC.create(e);
-        
-    }
-    
-    public ArrayList<Elenco> obtenerElenco(){
-        List<Elenco> elenco = EC.findElencoEntities();
-        ArrayList<Elenco> ElencoList = new ArrayList<>(elenco);
-        return ElencoList;
-    }
-    
-    public Elenco obtenerElenco(int id){
-        Elenco elenco = EC.findElenco(id);
-        return elenco;
-    }
-    
-    
-    public void CrearEmpleados(Empleados em){
-        
-        EmC.create(em);
-        
-    }
-    
-    public void EditarEmpleados(Empleados em){
+    public void ElimEmpleado(Long id){
         
         try {
-            EmC.edit(em);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
+            EmC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
+    }
+    
+    
+    public List<Empleados> obtenerEmpleado(){
+
+        return EmC.findAll();
+    }
+    
+    
+    public Optional<Empleados> obtenerEmpleado(Long id){
+        return EmC.findById(id);
+    }
+    
+    
+    public void CrearGenero(Generos g){
+        
+        GC.save(g);
+        
+    }
+    
+    
+    public void EditarGenero(Generos g){
+        
+        Optional<Generos> oa = GC.findById(g.getId());
+        
+        Generos ab = oa.get();
+        
+        ab.setDescripcion(g.getDescripcion());
+        ab.setEstado(g.getEstado());
+        
+        GC.save(ab);
         
     }
         
     
-    public void ElimEmpleados(Empleados em){
-        
-        EmC.create(em);
-        
-    }
-    
-    public ArrayList<Empleados> obtenerEmpleados(){
-        List<Empleados> empleados = EmC.findEmpleadosEntities();
-        ArrayList<Empleados> EmpleadosList = new ArrayList<>(empleados);
-        return EmpleadosList;
-    }
-    
-    public Empleados obtenerEmpleados(int id){
-        Empleados empleados = EmC.findEmpleados(id);
-        return empleados;
-    }
-    
-    
-    public void CrearGeneros(Generos g){
-        
-        GC.create(g);
-        
-    }
-    
-    public void EditarGeneros(Generos g){
+    public void ElimGenero(Long id){
         
         try {
-            GC.edit(g);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
-        
-    }
-        
-    
-    public void ElimGeneros(Generos g){
-        
-        GC.create(g);
-        
+            GC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
     }
     
-    public ArrayList<Generos> obtenerGeneros(){
-        List<Generos> generos = GC.findGenerosEntities();
-        ArrayList<Generos> GenerosList = new ArrayList<>(generos);
-        return GenerosList;
+    
+    public List<Generos> obtenerGenero(){
+
+        return GC.findAll();
     }
     
-    public Generos obtenerGeneros(int id){
-        Generos generos = GC.findGeneros(id);
-        return generos;
+    
+    public Optional<Generos> obtenerGenero(Long id){
+
+        return GC.findById(id);
     }
     
     
     
-    public void CrearIdiomas(Idiomas i){
+    public void CrearIdioma(Idiomas i){
         
-        IC.create(i);
-        
+        IC.save(i);       
     }
     
-    public void EditarIdiomas(Idiomas i){
+    
+    public void EditarIdioma(Idiomas i){
+        
+        Optional<Idiomas> oa = IC.findById(i.getId());
+        
+        Idiomas ab = oa.get();
+        
+        ab.setDescripcion(i.getDescripcion());
+        ab.setEstado(i.getEstado());
+        
+        IC.save(ab);
+        
+    }
+        
+    
+    public void ElimIdioma(Long id){
         
         try {
-            IC.edit(i);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
-        
-    }
-        
-    
-    public void ElimIdiomas(Idiomas i){
-        
-        IC.create(i);
-        
+            IC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
     }
     
-    public ArrayList<Idiomas> obtenerIdiomas(){
-        List<Idiomas> idiomas = IC.findIdiomasEntities();
-        ArrayList<Idiomas> ArticuloList = new ArrayList<>(idiomas);
-        return ArticuloList;
+    
+    public List<Idiomas> obtenerIdioma(){
+
+        return IC.findAll();
     }
     
-    public Idiomas obtenerIdiomas(int id){
-        Idiomas idiomas = IC.findIdiomas(id);
-        return idiomas;
+    
+    public Optional<Idiomas> obtenerIdioma(Long id){
+        return IC.findById(id);
     }
     
     
     public void CrearRentaDevolucion(RentaDevolucion rd){
         
-        RC.create(rd);
+        RC.save(rd);
         
     }
+    
     
     public void EditarRentaDevolucion(RentaDevolucion rd){
         
-        try {
-            RC.edit(rd);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
+        Optional<RentaDevolucion> oa = RC.findById(rd.getId());
         
+        RentaDevolucion ab = oa.get();
+        
+        ab.setArticulo(rd.getArticulo());
+        ab.setCantidadDias(rd.getCantidadDias());
+        ab.setCliente(rd.getCliente());
+        ab.setComentario(rd.getComentario());
+        ab.setEmpleado(rd.getEmpleado());
+        ab.setEstado(rd.getEstado());
+        ab.setFechaDevolucion(rd.getFechaDevolucion());
+        ab.setFechaRenta(rd.getFechaRenta());
+        
+        
+        RC.save(ab);        
     }
         
     
-    public void ElimRentaDevolucion(RentaDevolucion rd){
-        
-        RC.create(rd);
-        
-    }
-    
-    public ArrayList<RentaDevolucion> obtenerRentaDevolucion(){
-        List<RentaDevolucion> RD = RC.findRentaDevolucionEntities();
-        ArrayList<RentaDevolucion> RDList = new ArrayList<>(RD);
-        return RDList;
-    }
-    
-    public RentaDevolucion obtenerRentaDevolucion(int id){
-        RentaDevolucion RD = RC.findRentaDevolucion(id);
-        return RD;
-    }
-    
-    
-    public void CrearTiposArticulos(TiposArticulos ta){
-        
-        TAC.create(ta);
-        
-    }
-    
-    public void EditarTiposArticulos(TiposArticulos ta){
+    public void ElimRentaDeolucion(Long id){
         
         try {
-            TAC.edit(ta);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null , "Hubo un problema en editar", "advertencia", HEIGHT);
-        }
+            RC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
+    }
+    
+    
+    public List<RentaDevolucion> obtenerRentaDevolucion(){
+        
+        return RC.findAll();
+    }
+    
+    
+    public Optional<RentaDevolucion> obtenerRentaDevolucion(Long id){
+        
+        return RC.findById(id);
+    }
+    
+    
+    public void CrearTiposArticulo(TiposArticulos ta){
+        
+        TAC.save(ta);
+        
+    }
+    
+    
+    public void EditarTiposArticulo(TiposArticulos ta){
+        
+        Optional<TiposArticulos> oa = TAC.findById(ta.getId());
+        
+        TiposArticulos ab = oa.get();
+        
+        ab.setDescripcion(ta.getDescripcion());
+        ab.setEstado(ta.getEstado());
+        
+        TAC.save(ab);
         
     }
         
     
-    public void ElimTiposArticulos(TiposArticulos ta){
+    public void ElimTiposArticulos(Long id){
         
-        TAC.create(ta);
-        
+        try {
+            TAC.deleteById(id);
+        } catch (Exception ex) {
+            throw new IllegalStateException("Elemento con id " + id + " no existe exist");
+        }        
     }
     
-    public ArrayList<TiposArticulos> obtenerTiposArticulos(){
-        List<TiposArticulos> ta = TAC.findTiposArticulosEntities();
-        ArrayList<TiposArticulos> TAList = new ArrayList<>(ta);
-        return TAList;
+    
+    public List<TiposArticulos> obtenerTiposArticulo(){
+        return TAC.findAll();
     }
     
-    public TiposArticulos obtenerTiposArticulos(int id){
-        TiposArticulos ta = TAC.findTiposArticulos(id);
-        return ta;
+    
+    public Optional<TiposArticulos> obtenerTiposArticulo(Long id){
+        return TAC.findById(id);
     }
 }
