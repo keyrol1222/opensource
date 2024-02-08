@@ -10,8 +10,9 @@ public class ElencoArticulo {
     
     @OneToOne
     private Elenco elenco;
-    
-    private String Rol;
+
+    @OneToOne
+    private String rol;
 
     public ElencoArticulo() {
     }
@@ -20,7 +21,7 @@ public class ElencoArticulo {
     public ElencoArticulo(Articulo articulo, Elenco elenco, String Rol) {
         this.articulo = articulo;
         this.elenco = elenco;
-        this.Rol = Rol;
+        this.rol = Rol;
     }
     
     
