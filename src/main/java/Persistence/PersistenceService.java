@@ -1,12 +1,11 @@
 package Persistence;
 
 import com.opensource.Database.*;
-import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.List;
 import java.util.Optional;
-import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 //Contrladora de persistencias, donde se coordinan las operaciones CRUD
 @Service
@@ -39,6 +38,8 @@ public class PersistenceService {
         this.RC = RC;
         this.TAC = TAC;
     }
+    
+    
 
     public void CrearArticulo(Articulo a){
         
@@ -46,6 +47,7 @@ public class PersistenceService {
         
     }
     
+    @Transactional
     public void EditarArticulo(Articulo a){
         
         Optional<Articulo> oa = AC.findById(a.getId());
@@ -91,7 +93,7 @@ public class PersistenceService {
         
     }
     
-    
+    @Transactional
     public void EditarCliente(Clientes c){
         
         Optional<Clientes> oa = CC.findById(c.getId());
@@ -136,7 +138,7 @@ public class PersistenceService {
         EC.save(e);        
     }
     
-    
+    @Transactional
     public void EditarElenco(Elenco e){
         
         Optional<Elenco> oa = EC.findById(e.getId());
@@ -178,7 +180,7 @@ public class PersistenceService {
         EmC.save(em);        
     }
     
-    
+    @Transactional
     public void EditarEmpleado(Empleados em){
         
         Optional<Empleados> oa = EmC.findById(em.getId());
@@ -224,7 +226,7 @@ public class PersistenceService {
         
     }
     
-    
+    @Transactional
     public void EditarGenero(Generos g){
         
         Optional<Generos> oa = GC.findById(g.getId());
@@ -267,7 +269,7 @@ public class PersistenceService {
         IC.save(i);       
     }
     
-    
+    @Transactional
     public void EditarIdioma(Idiomas i){
         
         Optional<Idiomas> oa = IC.findById(i.getId());
@@ -309,7 +311,7 @@ public class PersistenceService {
         
     }
     
-    
+    @Transactional
     public void EditarRentaDevolucion(RentaDevolucion rd){
         
         Optional<RentaDevolucion> oa = RC.findById(rd.getId());
@@ -358,7 +360,7 @@ public class PersistenceService {
         
     }
     
-    
+    @Transactional
     public void EditarTiposArticulo(TiposArticulos ta){
         
         Optional<TiposArticulos> oa = TAC.findById(ta.getId());
