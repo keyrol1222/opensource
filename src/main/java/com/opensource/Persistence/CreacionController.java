@@ -57,12 +57,12 @@ public class CreacionController {
         return persistenceService.obtenerIdioma();
     }
 
-    @GetMapping("/rentas-devoluciones") // Ruta para obtener todas las rentas/devoluciones
+    @GetMapping("/rentasdevoluciones") // Ruta para obtener todas las rentas/devoluciones
     public List<RentaDevolucion> obtenerRentasDevoluciones() {
         return persistenceService.obtenerRentaDevolucion();
     }
 
-    @GetMapping("/tipos-articulos") // Ruta para obtener todos los tipos de artículos
+    @GetMapping("/tiposarticulos") // Ruta para obtener todos los tipos de artículos
     public List<TiposArticulos> obtenerTiposArticulos() {
         return persistenceService.obtenerTiposArticulo();
     }
