@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Empleados
 @RestController
-@RequestMapping("/Empleados")
+@RequestMapping("/empleados")
 public class ControladoraEmpleados {
     
     private final PersistenceService con;
@@ -20,14 +20,14 @@ public class ControladoraEmpleados {
         this.con = con;
     }
     
-    @PostMapping
+    @PostMapping("/empleados/create")
     public void CrearEmpleados(@RequestBody Empleados em){
         
         con.CrearEmpleado(em);
         
     }
     
-    
+    @PutMapping("/empleados")
     public void EditarEmpleados(Empleados em){
         
         con.EditarEmpleado(em);        
@@ -39,13 +39,13 @@ public class ControladoraEmpleados {
         con.ElimEmpleado(id);
     }
     
-    @GetMapping
+    @GetMapping("/empleados")
     public List<Empleados> obtenerEmpleados(){
         return con.obtenerEmpleado();
     }
     
-    
-    public Optional<Empleados> obtenerEmpleados(Long id){
+    @GetMapping("/empleados/{id}")
+    public Optional<Empleados> obtenerEmpleados(@PathVariable("id") Long id){
         return con.obtenerEmpleado(id);
     }
     

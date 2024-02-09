@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de TiposArticulos
 @RestController
-@RequestMapping("/TiposArticulos")
+@RequestMapping("/tiparticulos")
 public class ControladoraTiposArticulos {
     
     private final PersistenceService con;
@@ -23,32 +23,32 @@ public class ControladoraTiposArticulos {
     
 
     
-    @PostMapping
+    @PostMapping("/tiparticulos/create")
     public void CrearTiposArticulos(@RequestBody TiposArticulos ta){
         
         con.CrearTiposArticulo(ta);        
     }
     
-    
+    @PutMapping("/tiparticulos")    
     public void EditarTiposArticulos(TiposArticulos ta){
         
-        con.EditarTiposArticulo(ta);
-        
+        con.EditarTiposArticulo(ta);        
     }
-        
+      
+    
     @DeleteMapping(path = "{id}")
     public void ElimTiposArticulos(@PathVariable("id") Long id){
         
         con.ElimTiposArticulos(id);        
     }
     
-    @GetMapping
+    @GetMapping("/tiparticulos")    
     public List<TiposArticulos> obtenerTiposArticulos(){
         return con.obtenerTiposArticulo();
     }
     
-    
-    public Optional<TiposArticulos> obtenerTiposArticulos(Long id){
+    @GetMapping("/tiparticulos/{id}")    
+    public Optional<TiposArticulos> obtenerTiposArticulos(@PathVariable("id") Long id){
         return con.obtenerTiposArticulo(id);
     }
     

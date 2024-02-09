@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Elenco
 @RestController
-@RequestMapping("/Elenco")
+@RequestMapping("/elenco")
 public class ControladoraElenco {
     
         private final PersistenceService con;
@@ -20,14 +20,14 @@ public class ControladoraElenco {
         this.con = con;
     }
     
-    @PostMapping
+    @PostMapping("/elenco/create")
     public void CrearElencos(@RequestBody Elenco e){
         
         con.CrearElenco(e);
         
     }
     
-    
+    @PutMapping("/elenco")
     public void EditarElencos(Elenco e){
         
         con.EditarElenco(e);
@@ -41,14 +41,13 @@ public class ControladoraElenco {
         
     }
     
-    @GetMapping
+    @GetMapping("/elenco")
     public List<Elenco> obtenerElencos(){
         
         return con.obtenerElenco();
     }
-    
-    
-    public Optional<Elenco> obtenerElencos(Long id){
+    @GetMapping("/elenco/{id}")
+    public Optional<Elenco> obtenerElencos(@PathVariable("id") Long id){
         
         return con.obtenerElenco(id);
     }

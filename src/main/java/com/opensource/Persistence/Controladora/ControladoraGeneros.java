@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Generos
 @RestController
-@RequestMapping("/Generos")
+@RequestMapping("/generos")
 public class ControladoraGeneros {
     
     private final PersistenceService con;
@@ -21,14 +21,14 @@ public class ControladoraGeneros {
     }
     
     
-    @PostMapping
+    @PostMapping("/generos/create")
     public void CrearGeneros(@RequestBody Generos g){
         
         con.CrearGenero(g);
         
     }
     
-    
+    @PutMapping("/generos")
     public void EditarGeneros(Generos g){
         
         con.EditarGenero(g);        
@@ -40,13 +40,13 @@ public class ControladoraGeneros {
         con.ElimGenero(id);
     }
     
-    @GetMapping
+    @GetMapping("/generos")
     public List<Generos> obtenerGeneros(){
         return con.obtenerGenero();
     }
     
-    
-    public Optional<Generos> obtenerGeneros(Long id){
+    @GetMapping("/generos/{id}")
+    public Optional<Generos> obtenerGeneros(@PathVariable("id") Long id){
         return con.obtenerGenero(id);
     }
     

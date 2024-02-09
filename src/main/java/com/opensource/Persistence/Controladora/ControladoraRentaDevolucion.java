@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de RentaDevolucion
 @RestController
-@RequestMapping("/RentaDevolucion")
+@RequestMapping("/rendevlolucion")
 public class ControladoraRentaDevolucion {
     
     private final PersistenceService con;
@@ -20,14 +20,13 @@ public class ControladoraRentaDevolucion {
         this.con = con;
     }
     
-    @PostMapping
+    @PostMapping("/rendevlolucion/create")
     public void CrearRentaDevoluciones(@RequestBody RentaDevolucion rd){
         
-        con.CrearRentaDevolucion(rd);
-        
+        con.CrearRentaDevolucion(rd);        
     }
     
-    
+    @PutMapping("/rendevlolucion")
     public void EditarRentaDevoluciones(RentaDevolucion rd){
         
         con.EditarRentaDevolucion(rd);        
@@ -40,13 +39,13 @@ public class ControladoraRentaDevolucion {
         
     }
     
-    @GetMapping
+    @GetMapping("/rendevlolucion")
     public List<RentaDevolucion> obtenerRentaDevoluciones(){
         return con.obtenerRentaDevolucion();
     }
     
-    
-    public Optional<RentaDevolucion> obtenerRentaDevoluciones(Long id){
+    @GetMapping("/rendevlolucion/{id}")
+    public Optional<RentaDevolucion> obtenerRentaDevoluciones(@PathVariable("id") Long id){
         return con.obtenerRentaDevolucion(id);
     }
     

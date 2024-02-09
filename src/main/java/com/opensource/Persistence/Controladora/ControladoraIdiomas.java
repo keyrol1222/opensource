@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Idiomas
 @RestController
-@RequestMapping("/Idiomas")
+@RequestMapping("/idiomas")
 public class ControladoraIdiomas {
     
     private final PersistenceService con;
@@ -22,14 +22,14 @@ public class ControladoraIdiomas {
     
     
     
-    @PostMapping
+    @PostMapping("/idiomas/create")
     public void CrearIdiomas(@RequestBody Idiomas i){
         
         con.CrearIdioma(i);
         
     }
     
-    
+    @PutMapping("/idiomas")
     public void EditarIdiomas(Idiomas i){
         
         con.EditarIdioma(i);
@@ -42,13 +42,13 @@ public class ControladoraIdiomas {
         
     }
     
-    @GetMapping
+    @GetMapping("/idiomas")
     public List<Idiomas> obtenerIdiomas(){
         return con.obtenerIdioma();
     }
     
-    
-    public Optional<Idiomas> obtenerIdiomas(Long id){
+    @GetMapping("/idiomas/{id}")
+    public Optional<Idiomas> obtenerIdiomas(@PathVariable("id") Long id){
         return con.obtenerIdioma(id);
     }
     

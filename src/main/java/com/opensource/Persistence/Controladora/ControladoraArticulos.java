@@ -20,30 +20,31 @@ public class ControladoraArticulos {
         this.con = con;
     }
     
-    @PostMapping
+    @PostMapping("/articulos/create")
     public void CrearArticulos(@RequestBody Articulo a){
         
         con.CrearArticulo(a);        
     }
     
+    @PutMapping("/articulos")
     public void EditarArticulos(Articulo a){
             con.EditarArticulo(a);
     }
         
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping("/articulos/{id}")
     public void ElimArticulos(@PathVariable("id") Long id){
         
         con.ElimArticulo(id);       
     }
     
-    @GetMapping
+    @GetMapping("/articulos")
     public List<Articulo> obtenerArticulos(){
         
         return con.obtenerArticulo();
     }
     
-    
-    public Optional<Articulo> obtenerArticulos(Long id){        
+    @GetMapping("/articulos/{id}")
+    public Optional<Articulo> obtenerArticulos(@PathVariable("id") Long id){        
         return con.obtenerArticulo(id);
     }
     
