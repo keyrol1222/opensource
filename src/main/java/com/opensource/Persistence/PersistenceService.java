@@ -42,12 +42,14 @@ public class PersistenceService {
     
     
 
+    @SuppressWarnings("null")
     public void CrearArticulo(Articulo a){
         
         AC.save(a);
         
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarArticulo(Articulo a){
         
@@ -66,6 +68,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimArticulo(Long id){
         
         try {
@@ -82,18 +85,21 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<Articulo> obtenerArticulo(Long id){
         
         return AC.findById(id);
     }
     
     
+    @SuppressWarnings("null")
     public void CrearCliente(Clientes c){
         
         CC.save(c);
         
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarCliente(Clientes c){
         
@@ -113,6 +119,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimCliente(Long id){
         
         try {
@@ -129,16 +136,19 @@ public class PersistenceService {
     
     
     
+    @SuppressWarnings("null")
     public Optional<Clientes> obtenerCliente(Long id){
         return CC.findById(id);
     }
     
     
+    @SuppressWarnings("null")
     public void CrearElenco(Elenco e){
         
         EC.save(e);        
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarElenco(Elenco e){
         
@@ -154,6 +164,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimElenco(Long id){
         
         try {
@@ -170,17 +181,20 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<Elenco> obtenerElenco(Long id){
 
         return EC.findById(id);
     }
     
     
+    @SuppressWarnings("null")
     public void CrearEmpleado(Empleados em){
         
         EmC.save(em);        
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarEmpleado(Empleados em){
         
@@ -200,6 +214,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimEmpleado(Long id){
         
         try {
@@ -216,17 +231,20 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<Empleados> obtenerEmpleado(Long id){
         return EmC.findById(id);
     }
     
     
+    @SuppressWarnings("null")
     public void CrearGenero(Generos g){
         
         GC.save(g);
         
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarGenero(Generos g){
         
@@ -242,6 +260,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimGenero(Long id){
         
         try {
@@ -258,6 +277,7 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<Generos> obtenerGenero(Long id){
 
         return GC.findById(id);
@@ -265,11 +285,13 @@ public class PersistenceService {
     
     
     
+    @SuppressWarnings("null")
     public void CrearIdioma(Idiomas i){
         
         IC.save(i);       
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarIdioma(Idiomas i){
         
@@ -285,6 +307,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimIdioma(Long id){
         
         try {
@@ -301,17 +324,20 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<Idiomas> obtenerIdioma(Long id){
         return IC.findById(id);
     }
     
     
+    @SuppressWarnings("null")
     public void CrearRentaDevolucion(RentaDevolucion rd){
         
         RC.save(rd);
         
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarRentaDevolucion(RentaDevolucion rd){
         
@@ -333,6 +359,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimRentaDeolucion(Long id){
         
         try {
@@ -349,18 +376,21 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<RentaDevolucion> obtenerRentaDevolucion(Long id){
         
         return RC.findById(id);
     }
     
     
+    @SuppressWarnings("null")
     public void CrearTiposArticulo(TiposArticulos ta){
         
         TAC.save(ta);
         
     }
     
+    @SuppressWarnings("null")
     @Transactional
     public void EditarTiposArticulo(TiposArticulos ta){
         
@@ -376,6 +406,7 @@ public class PersistenceService {
     }
         
     
+    @SuppressWarnings("null")
     public void ElimTiposArticulos(Long id){
         
         try {
@@ -391,6 +422,7 @@ public class PersistenceService {
     }
     
     
+    @SuppressWarnings("null")
     public Optional<TiposArticulos> obtenerTiposArticulo(Long id){
         return TAC.findById(id);
     }
