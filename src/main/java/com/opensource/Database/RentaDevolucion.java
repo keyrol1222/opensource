@@ -2,7 +2,7 @@ package com.opensource.Database;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity

@@ -1,8 +1,10 @@
 package com.opensource.Database;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Data;
 
 
+@Data
 public class ElencoArticulo {
     
     @OneToOne
