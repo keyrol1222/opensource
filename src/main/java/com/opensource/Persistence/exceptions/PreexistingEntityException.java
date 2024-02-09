@@ -1,4 +1,4 @@
-package Persistence.exceptions;
+package com.opensource.Persistence.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {
