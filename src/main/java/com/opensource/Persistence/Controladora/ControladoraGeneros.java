@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Generos
+@CrossOrigin
 @RestController
 @RequestMapping("/Generos")
 public class ControladoraGeneros {
@@ -28,7 +29,7 @@ public class ControladoraGeneros {
         
     }
     
-    
+    @PutMapping
     public void EditarGeneros(Generos g){
         
         con.EditarGenero(g);        

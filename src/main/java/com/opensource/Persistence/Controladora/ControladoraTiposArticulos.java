@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 //Controladora donde se pueden acceder a los metodos de TiposArticulos
+@CrossOrigin
 @RestController
 @RequestMapping("/tiparticulos")
 public class ControladoraTiposArticulos {
@@ -23,13 +24,13 @@ public class ControladoraTiposArticulos {
     
 
     
-    @PostMapping("/tiparticulos/create")
+    @PostMapping
     public void CrearTiposArticulos(@RequestBody TiposArticulos ta){
         
         con.CrearTiposArticulo(ta);        
     }
     
-    @PutMapping("/tiparticulos")    
+    @PutMapping
     public void EditarTiposArticulos(TiposArticulos ta){
         
         con.EditarTiposArticulo(ta);        
@@ -42,7 +43,7 @@ public class ControladoraTiposArticulos {
         con.ElimTiposArticulos(id);        
     }
     
-    @GetMapping("/tiparticulos")    
+    @GetMapping 
     public List<TiposArticulos> obtenerTiposArticulos(){
         return con.obtenerTiposArticulo();
     }

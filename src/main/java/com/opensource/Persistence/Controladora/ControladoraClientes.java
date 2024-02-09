@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Clientes
+@CrossOrigin
 @RestController
 @RequestMapping("/clientes")
 public class ControladoraClientes {
@@ -20,13 +21,13 @@ public class ControladoraClientes {
         this.con = con;
     }
     
-    @PostMapping("/clientes/create")
+    @PostMapping
     public void CrearClientes(Clientes c){
         
         con.CrearCliente(c);        
     }
     
-    @PutMapping("/clientes")
+    @PutMapping
     public void EditarClientes(Clientes c){
         
         con.EditarCliente(c);       
@@ -38,7 +39,7 @@ public class ControladoraClientes {
         con.ElimCliente(id);        
     }
     
-    @GetMapping("/clientes")
+    @GetMapping
     public List<Clientes> obtenerClientes(){
         
         return con.obtenerCliente();

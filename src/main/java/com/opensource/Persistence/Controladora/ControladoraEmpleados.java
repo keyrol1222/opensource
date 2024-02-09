@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Empleados
+@CrossOrigin
 @RestController
 @RequestMapping("/empleados")
 public class ControladoraEmpleados {
@@ -20,14 +21,14 @@ public class ControladoraEmpleados {
         this.con = con;
     }
     
-    @PostMapping("/empleados/create")
+    @PostMapping
     public void CrearEmpleados(@RequestBody Empleados em){
         
         con.CrearEmpleado(em);
         
     }
     
-    @PutMapping("/empleados")
+    @PutMapping
     public void EditarEmpleados(Empleados em){
         
         con.EditarEmpleado(em);        
@@ -39,7 +40,7 @@ public class ControladoraEmpleados {
         con.ElimEmpleado(id);
     }
     
-    @GetMapping("/empleados")
+    @GetMapping
     public List<Empleados> obtenerEmpleados(){
         return con.obtenerEmpleado();
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Articulos
+@CrossOrigin
 @RestController
 @RequestMapping("/Articulos")
 public class ControladoraArticulos {
@@ -20,13 +21,13 @@ public class ControladoraArticulos {
         this.con = con;
     }
     
-    @PostMapping("/articulos/create")
+    @PostMapping
     public void CrearArticulos(@RequestBody Articulo a){
         
         con.CrearArticulo(a);        
     }
     
-    @PutMapping("/articulos")
+    @PutMapping
     public void EditarArticulos(Articulo a){
             con.EditarArticulo(a);
     }
@@ -37,7 +38,7 @@ public class ControladoraArticulos {
         con.ElimArticulo(id);       
     }
     
-    @GetMapping("/articulos")
+    @GetMapping
     public List<Articulo> obtenerArticulos(){
         
         return con.obtenerArticulo();

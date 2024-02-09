@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de RentaDevolucion
+@CrossOrigin
 @RestController
 @RequestMapping("/rendevlolucion")
 public class ControladoraRentaDevolucion {
@@ -20,13 +21,13 @@ public class ControladoraRentaDevolucion {
         this.con = con;
     }
     
-    @PostMapping("/rendevlolucion/create")
+    @PostMapping
     public void CrearRentaDevoluciones(@RequestBody RentaDevolucion rd){
         
         con.CrearRentaDevolucion(rd);        
     }
     
-    @PutMapping("/rendevlolucion")
+    @PutMapping
     public void EditarRentaDevoluciones(RentaDevolucion rd){
         
         con.EditarRentaDevolucion(rd);        
@@ -39,7 +40,7 @@ public class ControladoraRentaDevolucion {
         
     }
     
-    @GetMapping("/rendevlolucion")
+    @GetMapping
     public List<RentaDevolucion> obtenerRentaDevoluciones(){
         return con.obtenerRentaDevolucion();
     }

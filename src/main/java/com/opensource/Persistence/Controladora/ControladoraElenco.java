@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Elenco
+@CrossOrigin
 @RestController
 @RequestMapping("/elenco")
 public class ControladoraElenco {
@@ -20,14 +21,14 @@ public class ControladoraElenco {
         this.con = con;
     }
     
-    @PostMapping("/elenco/create")
+    @PostMapping
     public void CrearElencos(@RequestBody Elenco e){
         
         con.CrearElenco(e);
         
     }
     
-    @PutMapping("/elenco")
+    @PutMapping
     public void EditarElencos(Elenco e){
         
         con.EditarElenco(e);
@@ -41,11 +42,12 @@ public class ControladoraElenco {
         
     }
     
-    @GetMapping("/elenco")
+    @GetMapping
     public List<Elenco> obtenerElencos(){
         
         return con.obtenerElenco();
     }
+    
     @GetMapping("/elenco/{id}")
     public Optional<Elenco> obtenerElencos(@PathVariable("id") Long id){
         

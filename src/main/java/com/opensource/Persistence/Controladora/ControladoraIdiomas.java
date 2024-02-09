@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Idiomas
+@CrossOrigin
 @RestController
 @RequestMapping("/idiomas")
 public class ControladoraIdiomas {
@@ -22,14 +23,14 @@ public class ControladoraIdiomas {
     
     
     
-    @PostMapping("/idiomas/create")
+    @PostMapping
     public void CrearIdiomas(@RequestBody Idiomas i){
         
         con.CrearIdioma(i);
         
     }
     
-    @PutMapping("/idiomas")
+    @PutMapping
     public void EditarIdiomas(Idiomas i){
         
         con.EditarIdioma(i);
@@ -42,7 +43,7 @@ public class ControladoraIdiomas {
         
     }
     
-    @GetMapping("/idiomas")
+    @GetMapping
     public List<Idiomas> obtenerIdiomas(){
         return con.obtenerIdioma();
     }
