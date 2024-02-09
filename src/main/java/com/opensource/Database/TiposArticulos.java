@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Entity
 @Data
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class TiposArticulos implements Serializable {
     
     @Id
@@ -30,8 +29,6 @@ public class TiposArticulos implements Serializable {
         this.Estado = Estado;
     }
     
-    
-
     public TiposArticulos() {
     }
     
