@@ -2,12 +2,7 @@ package com.opensource.Database;
 
 import java.io.Serializable;
 import java.util.LinkedList;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
