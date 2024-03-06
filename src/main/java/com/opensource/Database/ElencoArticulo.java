@@ -1,6 +1,6 @@
 package com.opensource.Database;
 
-import javax.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
