@@ -5,6 +5,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Entity
 @Data
 public class RentaDevolucion implements Serializable {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Entity
 @Data
 public class Elenco implements Serializable {

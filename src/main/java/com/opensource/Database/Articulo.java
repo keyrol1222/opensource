@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Entity
 @Data
 public class Articulo implements Serializable {
