@@ -5,6 +5,7 @@ import com.opensource.Database.Idiomas;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Idiomas
@@ -44,8 +45,11 @@ public class ControladoraIdiomas {
     }
     
     @GetMapping
-    public List<Idiomas> obtenerIdiomas(){
-        return con.obtenerIdioma();
+    public ResponseEntity<List<Idiomas>> obtenerIdiomas(){
+        
+        List<Idiomas> i = con.obtenerIdioma();
+        
+        return ResponseEntity.ok(i);
     }
     
     @GetMapping("/idiomas/{id}")

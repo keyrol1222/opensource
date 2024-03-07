@@ -1,4 +1,4 @@
-package com;
+package com.opensource.config;
 
 import com.opensource.Database.*;
 import com.opensource.Persistence.*;

@@ -1,4 +1,4 @@
-package com;
+package com.opensource.config;
 
 import com.opensource.Database.Articulo;
 import com.opensource.Persistence.ArticuloJpaController;

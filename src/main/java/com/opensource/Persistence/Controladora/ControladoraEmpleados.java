@@ -5,6 +5,7 @@ import com.opensource.Database.Empleados;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //Controladora donde se pueden acceder a los metodos de Empleados
@@ -42,12 +43,22 @@ public class ControladoraEmpleados {
     
     @GetMapping
     public List<Empleados> obtenerEmpleados(){
+        
         return con.obtenerEmpleado();
     }
     
     @GetMapping("/empleados/{id}")
-    public Optional<Empleados> obtenerEmpleados(@PathVariable("id") Long id){
-        return con.obtenerEmpleado(id);
+    public ResponseEntity<Optional<Empleados>> obtenerEmpleados(@PathVariable("id") Long id){
+        
+        Optional<Empleados> e = con.obtenerEmpleado(id);
+        
+        if (e != null) {
+            // Si se encuentra el producto, devolverlo con el código de estado 200 OK
+            return ResponseEntity.ok(e);
+        } else {
+            // Si no se encuentra el producto, devolver un código de estado 404 Not Found
+            return ResponseEntity.notFound().build();
+        }  
     }
     
 }
