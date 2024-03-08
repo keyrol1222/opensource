@@ -65,4 +65,21 @@ public class Configurator {
         };
     }
     
+        @Bean
+    CommandLineRunner articulo(ArticuloJpaController repository){
+        return args -> {
+            Articulo m = new Articulo(
+                    "Matrix", 
+                    null, 
+                    null, 
+                    0, 0, 0, 
+                    "Disponible"
+            );
+
+            repository.save(
+                    m
+            );
+        };
+    }
+    
 }

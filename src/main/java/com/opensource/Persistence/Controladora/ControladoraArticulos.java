@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 //Controladora donde se pueden acceder a los metodos de Articulos
 @CrossOrigin
 @RestController
-@RequestMapping("/Articulos")
+@RequestMapping("/articulos")
 public class ControladoraArticulos {
     
     private final PersistenceService con;
