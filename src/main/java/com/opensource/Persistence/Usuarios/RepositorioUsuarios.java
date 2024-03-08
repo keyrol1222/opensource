@@ -1,17 +1,18 @@
 package com.opensource.Persistence.Usuarios;
 
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepositorioUsuarios {
-        private final static List<UserDetails> APPLICATION_USERS = Arrays.asList( 
+public interface RepositorioUsuarios extends JpaRepository<User, Integer>{
+        
+    static final List<UserDetails> APPLICATION_USERS = Arrays.asList( 
         new User(
             "videoclub.proyecto@gmail.com",
             "contraseña",
