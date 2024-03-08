@@ -1,4 +1,4 @@
-package com;
+package com.opensource.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
