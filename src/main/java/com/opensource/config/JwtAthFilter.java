@@ -24,7 +24,7 @@ public class JwtAthFilter extends OncePerRequestFilter{
         final String UserEmail;
         final String jwtToken;
         
-        if(authHeader == null || !authHeader.startsWith("Bearer"))
+        if(authHeader == null || !authHeader.startsWith("Bearer"));
     }
     
 }
