@@ -1,4 +1,4 @@
-package com;
+package com.opensource.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+@SuppressWarnings("deprecation")
 @Component
 public class JwtUtils {
     private String jwtSigningKey = "secret";
@@ -35,7 +36,7 @@ public class JwtUtils {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(jwtSigningKey).parseClaimsJws(token).getBody();
+        return (Claims) Jwts.parser().setSigningKey(jwtSigningKey);
     }
 
     private Boolean isTokenExpired(String token) {

@@ -1,4 +1,4 @@
-package com;
+package com.opensource.config;
 
 import java.io.IOException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package com;
+package com.opensource.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
