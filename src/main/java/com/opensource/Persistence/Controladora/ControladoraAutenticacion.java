@@ -1,5 +1,9 @@
 package com.opensource.Persistence.Controladora;
 
+import com.opensource.Database.LoginResponse;
+import com.opensource.Database.Registration;
+import com.opensource.Database.User;
+import com.opensource.Persistence.AuthenticationService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,12 +17,12 @@ public class ControladoraAutenticacion {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ApplicationUser registerUser(@RequestBody RegistrationDTO body){
+    public User registerUser(@RequestBody Registration body){
         return authenticationService.registerUser(body.getUsername(), body.getPassword());
     }
     
     @PostMapping("/login")
-    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){
+    public LoginResponse loginUser(@RequestBody Registration body){
         return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
 }
