@@ -5,19 +5,19 @@ import lombok.Data;
 @Data
 public class LoginResponse {
     
-    private User user;
+    private Usuario user;
     private String jwt;
 
     public LoginResponse(){
         super();
     }
 
-    public LoginResponse(User user, String jwt){
+    public LoginResponse(Usuario user, String jwt){
         this.user = user;
         this.jwt = jwt;
     }
 
-    public User getUser(){
+    public Usuario getUser(){
         return this.user;
     }
     

@@ -1,8 +1,8 @@
 package com.opensource.Database;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.Data;
 
 
@@ -18,10 +18,10 @@ public class Articulo implements Serializable {
     private String Titulo;
     
     @OneToMany
-    private LinkedList<TiposArticulos> Tipos;
+    private List<TiposArticulos> Tipos;
     
     @OneToMany
-    private LinkedList<Idiomas> idiomas;
+    private List<Idiomas> idiomas;
     
     private int RentaXDias;
     
@@ -35,7 +35,7 @@ public class Articulo implements Serializable {
     }
     
     //Constructor con todo
-    public Articulo(Long Id, String Titulo, LinkedList<TiposArticulos> Tipos, LinkedList<Idiomas> idiomas, int RentaXDias, int DiasRenta, int EntregaTardia, String Estado) {
+    public Articulo(Long Id, String Titulo, List<TiposArticulos> Tipos, List<Idiomas> idiomas, int RentaXDias, int DiasRenta, int EntregaTardia, String Estado) {
         this.Id = Id;
         this.Titulo = Titulo;
         this.Tipos = Tipos;
@@ -47,7 +47,7 @@ public class Articulo implements Serializable {
     }
 
     //constructor sin id
-    public Articulo(String Titulo, LinkedList<TiposArticulos> Tipos, LinkedList<Idiomas> idiomas, int RentaXDias, int DiasRenta, int EntregaTardia, String Estado) {
+    public Articulo(String Titulo, List<TiposArticulos> Tipos, List<Idiomas> idiomas, int RentaXDias, int DiasRenta, int EntregaTardia, String Estado) {
         this.Titulo = Titulo;
         this.Tipos = Tipos;
         this.idiomas = idiomas;

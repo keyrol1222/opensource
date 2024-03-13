@@ -2,9 +2,12 @@ package com.opensource.config;
 
 import com.opensource.Database.*;
 import com.opensource.Persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class Configurator {
@@ -65,7 +68,7 @@ public class Configurator {
         };
     }
     
-        @Bean
+    @Bean
     CommandLineRunner articulo(ArticuloJpaController repository){
         return args -> {
             Articulo m = new Articulo(
@@ -81,5 +84,20 @@ public class Configurator {
             );
         };
     }
+    	@Bean
+	CommandLineRunner usuario(RoleJpaController roleRepository, UserJpaController userRepository, PasswordEncoder passwordEncode){
+		return args ->{
+			if(roleRepository.findByAuthority("ADMIN").isPresent()) return;
+			Role adminRole = roleRepository.save(new Role("ADMIN"));
+			roleRepository.save(new Role("USER"));
+
+			Set<Role> roles = new HashSet<>();
+			roles.add(adminRole);
+
+			Usuario admin = new Usuario(1, "admin", passwordEncode.encode("password"), roles);
+
+			userRepository.save(admin);
+		};
+	}
     
 }

@@ -1,4 +1,4 @@
-package com.opensource.Database;
+    package com.opensource.Database;
 
 import jakarta.persistence.*;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Data
 @Table(name="users")
-public class User implements UserDetails{
+public class Usuario implements UserDetails{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -29,19 +29,19 @@ public class User implements UserDetails{
     
     private Set<Role> authorities;
     
-    public User() {
+    public Usuario() {
         super();
         authorities = new HashSet<>();
     }
     
-    public User(String username, String password, Set<Role> authorities) {
+    public Usuario(String username, String password, Set<Role> authorities) {
         super();
         this.username = username;
         this.password = password;
         this.authorities = authorities;
     }
 	
-    public User(Integer userId, String username, String password, Set<Role> authorities) {
+    public Usuario(Integer userId, String username, String password, Set<Role> authorities) {
             super();
             this.userId = userId;
             this.username = username;

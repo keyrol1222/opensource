@@ -2,7 +2,7 @@ package com.opensource.Persistence.Controladora;
 
 import com.opensource.Database.LoginResponse;
 import com.opensource.Database.Registration;
-import com.opensource.Database.User;
+import com.opensource.Database.Usuario;
 import com.opensource.Persistence.AuthenticationService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ControladoraAutenticacion {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody Registration body){
+    public Usuario registerUser(@RequestBody Registration body){
         return authenticationService.registerUser(body.getUsername(), body.getPassword());
     }
     
